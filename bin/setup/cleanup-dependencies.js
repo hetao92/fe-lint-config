@@ -1,4 +1,7 @@
-import { detectESLintPrettierDependencies, uninstallDependencies } from '../utils/dependencies.js';
+import {
+  detectESLintPrettierDependencies,
+  uninstallDependencies,
+} from '../utils/dependencies.js';
 import { confirm, log } from '../utils/cli.js';
 
 /**
@@ -31,10 +34,7 @@ export async function cleanupDependencies(options) {
     return null;
   }
 
-  log(
-    `\n📦 检测到以下 ESLint 相关依赖: ${packagesToCheck.join(', ')}`,
-    'cyan',
-  );
+  log(`\n📦 检测到以下 ESLint 相关依赖: ${packagesToCheck.join(', ')}`, 'cyan');
   const shouldUninstall = await confirm(
     '是否卸载这些依赖? (推荐，因为已选择使用 Oxlint)',
   );
@@ -46,4 +46,3 @@ export async function cleanupDependencies(options) {
 
   return null;
 }
-

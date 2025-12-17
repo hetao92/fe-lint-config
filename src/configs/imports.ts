@@ -1,6 +1,6 @@
 import importPlugin from 'eslint-plugin-import';
 
-import type { OptionsOverrides, TypedFlatConfigItem } from '../types';
+import type { OptionsOverrides, TypedFlatConfigItem } from '../types/eslint';
 
 export function imports(options: OptionsOverrides = {}): TypedFlatConfigItem[] {
   const { overrides = {} } = options;

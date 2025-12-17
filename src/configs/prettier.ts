@@ -2,7 +2,7 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import prettier from 'eslint-plugin-prettier';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
-import type { OptionsOverrides, TypedFlatConfigItem } from '../types';
+import type { OptionsOverrides, TypedFlatConfigItem } from '../types/eslint';
 
 export function _prettier(
   options: OptionsOverrides = {},

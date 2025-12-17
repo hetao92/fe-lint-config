@@ -51,4 +51,3 @@ export async function setupScripts(options) {
   log('✓ package.json 脚本已添加', 'green');
   return true;
 }
-

@@ -8,7 +8,7 @@ import type {
   OptionsOverrides,
   OptionsTypeScriptWithTypes,
   TypedFlatConfigItem,
-} from '../types';
+} from '../types/eslint';
 
 export function typescript(
   options: OptionsFiles &

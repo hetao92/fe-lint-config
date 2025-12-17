@@ -9,7 +9,11 @@ import {
   react,
   typescript,
 } from './configs';
-import type { Awaitable, OptionsConfig, TypedFlatConfigItem } from './types';
+import type {
+  Awaitable,
+  OptionsConfig,
+  TypedFlatConfigItem,
+} from './types/eslint';
 
 const flatConfigProps = [
   'name',

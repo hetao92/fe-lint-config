@@ -85,11 +85,7 @@ export async function setupVSCodeConfig(options) {
   // 合并配置
   const mergedConfig = mergeVSCodeConfig(existingConfig, newConfig);
 
-  writeFileSync(
-    '.vscode/settings.json',
-    JSON.stringify(mergedConfig, null, 2),
-  );
+  writeFileSync('.vscode/settings.json', JSON.stringify(mergedConfig, null, 2));
   log('✓ VSCode 配置文件已生成 (.vscode/settings.json)', 'green');
   return true;
 }
-

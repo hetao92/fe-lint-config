@@ -1,4 +1,4 @@
-import type { OptionsOverrides, TypedFlatConfigItem } from '../types';
+import type { OptionsOverrides, TypedFlatConfigItem } from '../types/eslint';
 
 export function javascript(
   options: OptionsOverrides = {},

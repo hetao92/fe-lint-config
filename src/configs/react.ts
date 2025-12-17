@@ -6,7 +6,7 @@ import type {
   OptionsOverrides,
   OptionsTypeScriptWithTypes,
   TypedFlatConfigItem,
-} from '../types';
+} from '../types/eslint';
 import { GLOB_SRC } from '../globs';
 
 export function react(

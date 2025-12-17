@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
+
 import { log } from '../utils/cli.js';
 
 // 检测旧的 ESLint 配置文件
@@ -140,4 +141,3 @@ export function migrateESLintRules(oldConfig) {
 
   return migrated;
 }
-

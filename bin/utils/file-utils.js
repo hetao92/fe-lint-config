@@ -1,4 +1,5 @@
-import { existsSync, readFileSync } from 'fs';
+import { existsSync } from 'fs';
+
 import { log } from './cli.js';
 
 // 检查是否在项目根目录
@@ -9,4 +10,3 @@ export function checkProjectRoot() {
     process.exit(1);
   }
 }
-

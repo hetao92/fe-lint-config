@@ -9,7 +9,6 @@ import {
   installDependencies,
 } from './utils/dependencies.js';
 import { checkProjectRoot } from './utils/file-utils.js';
-
 // 导入检测器模块
 import { detectOldESLintConfig } from './detectors/eslint.js';
 import { detectPrettier } from './detectors/prettier.js';
@@ -17,14 +16,11 @@ import {
   detectOldStylelintConfig,
   migrateStylelintConfig,
 } from './detectors/stylelint.js';
-
 // 导入生成器模块
 import { generateESLintConfig } from './generators/eslint.js';
 import { generateStylelintConfig } from './generators/stylelint.js';
-
 // 导入迁移器模块
 import { migratePrettierToOxfmt } from './migrators/prettier-to-oxfmt.js';
-
 // 导入设置模块
 import { cleanupDependencies } from './setup/cleanup-dependencies.js';
 import { showCompletionMessage } from './setup/completion-message.js';

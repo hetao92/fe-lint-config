@@ -1,4 +1,4 @@
-import { StylelintOptions } from '@/types';
+import { StylelintOptions } from '../types/stylelint';
 
 export function stylelint(options?: StylelintOptions) {
   const {

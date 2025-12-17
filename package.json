@@ -1,6 +1,6 @@
 {
   "name": "@oceanbase/lint-config",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "type": "module",
@@ -9,12 +9,28 @@
       "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
+    },
+    "./eslint": {
+      "types": "./dist/eslint.d.ts",
+      "require": "./dist/eslint.cjs",
+      "import": "./dist/eslint.js"
+    },
+    "./stylelint": {
+      "types": "./dist/stylelint.d.ts",
+      "require": "./dist/stylelint.cjs",
+      "import": "./dist/stylelint.js"
     }
   },
   "typesVersions": {
     "*": {
+      "eslint": [
+        "./dist/eslint.d.ts"
+      ],
+      "stylelint": [
+        "./dist/stylelint.d.ts"
+      ],
       "*": [
-        "./src/*"
+        "./dist/*"
       ]
     }
   },
@@ -41,6 +57,23 @@
     "stylelint-config-standard": "^38.0.0",
     "stylelint-less": "^3.0.1",
     "typescript-eslint": "^8.17.0"
+  },
+  "peerDependenciesMeta": {
+    "@eslint/js": { "optional": true },
+    "@typescript-eslint/parser": { "optional": true },
+    "eslint": { "optional": true },
+    "eslint-config-prettier": { "optional": true },
+    "eslint-flat-config-utils": { "optional": true },
+    "eslint-import-resolver-typescript": { "optional": true },
+    "eslint-plugin-import": { "optional": true },
+    "eslint-plugin-prettier": { "optional": true },
+    "eslint-plugin-react": { "optional": true },
+    "eslint-plugin-react-hooks": { "optional": true },
+    "stylelint": { "optional": true },
+    "stylelint-config-recommended-less": { "optional": true },
+    "stylelint-config-standard": { "optional": true },
+    "stylelint-less": { "optional": true },
+    "typescript-eslint": { "optional": true }
   },
   "dependencies": {
     "@eslint/js": "^9.15.0",

@@ -1,4 +1,4 @@
-import type { TypedFlatConfigItem } from '../types';
+import type { TypedFlatConfigItem } from '../types/eslint';
 import { customPlugin } from '../rules/index';
 export function customRule(): TypedFlatConfigItem[] {
   return [

@@ -376,11 +376,11 @@ export default OBStylelintCfg({
 
 #### 单独使用插件
 
-若项目只使用 Stylelint 且希望单独引用设计 Token 插件，可从 `@oceanbase/lint-config/stylelint` 引入规则与示例 token：
+若项目只使用 Stylelint 且希望单独引用设计 Token 插件，可从 `@oceanbase/lint-config/stylelint` 引入规则。不传 `tokens` 且 `useDefaultOBUIToken` 为默认 `true` 时，会使用内置 OceanBase UI token；也可传入 `tokens` 做覆盖或仅用自定义 token（`useDefaultOBUIToken: false`）：
 
 ```js
 // .stylelintrc.mjs
-import { useDesignTokens, exampleDesignTokens } from '@oceanbase/lint-config/stylelint'
+import { useDesignTokens } from '@oceanbase/lint-config/stylelint'
 
 export default {
   plugins: [useDesignTokens],
@@ -388,7 +388,8 @@ export default {
     'ob/use-design-tokens': [
       true,
       {
-        tokens: exampleDesignTokens, // 或你的 token 对象
+        useDefaultOBUIToken: true, // 默认 true，即使用内置 token
+        tokens: {},               // 可选，自定义覆盖
         useCSSVariable: true,
         cssVariablePrefix: 'ob',
       },

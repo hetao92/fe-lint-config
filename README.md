@@ -364,11 +364,11 @@ export default OBStylelintCfg({
 
 #### Using the Plugin Standalone
 
-If you only use Stylelint and want to use the Design Token plugin on its own, import the rule and example tokens from `@oceanbase/lint-config/stylelint`:
+If you only use Stylelint and want to use the Design Token plugin on its own, import the rule from `@oceanbase/lint-config/stylelint`. With `useDefaultOBUIToken: true` (default) and no `tokens`, the built-in OceanBase UI tokens are used; pass `tokens` to override or set `useDefaultOBUIToken: false` to use only your own tokens:
 
 ```js
 // .stylelintrc.mjs
-import { useDesignTokens, exampleDesignTokens } from '@oceanbase/lint-config/stylelint'
+import { useDesignTokens } from '@oceanbase/lint-config/stylelint'
 
 export default {
   plugins: [useDesignTokens],
@@ -376,7 +376,8 @@ export default {
     'ob/use-design-tokens': [
       true,
       {
-        tokens: exampleDesignTokens, // or your own token object
+        useDefaultOBUIToken: true, // default: use built-in tokens
+        tokens: {},                // optional overrides
         useCSSVariable: true,
         cssVariablePrefix: 'ob'
       }

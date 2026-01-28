@@ -1,0 +1,9 @@
+/* BACKGROUND 属性 - 期望被替换 */
+
+.bg-color-replace {
+  background-color: #f5f7fc; /* 应被替换为 --ob-color-bg-secondary */
+}
+
+.complex-background {
+  background: #0d6cf2 10px 20px; /* 包含颜色和间距 */
+}

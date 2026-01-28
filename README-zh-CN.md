@@ -3,8 +3,9 @@
 中文 | [English](./README.md)
 
 - [快速开始](#快速开始)
-- [Eslint 配置说明](#eslint)
+- [ESLint 配置说明](#eslint)
 - [Stylelint 配置说明](#stylelint)
+  - [设计 Token 插件](#设计-token-插件)
 
 ## 快速开始
 
@@ -28,25 +29,27 @@ npx @oceanbase/lint-config setup-lint
 
 ### 手动安装
 
-# 安装
+#### 安装
 
 ```bash
-npm i --save-dev eslint prettier stylelint @oceanbase/lint-config  stylelint-config-recommended-less stylelint-config-standard stylelint-less
-
+npm i --save-dev eslint prettier stylelint @oceanbase/lint-config stylelint-config-recommended-less stylelint-config-standard stylelint-less
 ```
-# 限制
+
+#### 限制
+
 - 要求 ESLint v9.5.0+
-- 要求 Node.js (^18.18.0, ^20.9.0, or >=21.1.0) 
+- 要求 Node.js (^18.18.0, ^20.9.0, or >=21.1.0)
 
-# eslint
+## ESLint
 
-## 已启动插件
+### 已启用插件
 - [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import)
 - [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react)
 - [eslint-plugin-react-hooks](https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks)
 - [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)
 
-## 使用
+### 使用
+
 在项目根目录创建 `eslint.config.mjs` 文件
 
 ```js
@@ -88,7 +91,7 @@ npm i -save-dev lint-staged husky
 }
 ```
 
-## 自定义
+### 自定义
 
 ```js
 // eslint.config.js
@@ -135,7 +138,8 @@ export default OBEslintCfg(
 )
 ```
 
-## 规则覆盖
+### 规则覆盖
+
 所有规则只在特定模块下配置，当然也支持在第一个参数之后的配置中覆盖默认配置
 
 ```js
@@ -161,7 +165,7 @@ export default OBEslintCfg(
 )
 ```
 
-## 基于 TypeScript 的类型信息规则
+### 基于 TypeScript 的类型信息规则
 
 你可以通过配置 tsconfigPath 参数来开启基于 TypeScript 的[类型信息规则](https://typescript-eslint.io/linting/typed-linting/)
 
@@ -180,13 +184,13 @@ export default OBEslintCfg({
 ```
 
 
-## 添加新规则
+### 添加新规则
 
 1. 在 `src/rules` 下添加规则
 2. 在 `src/configs` 下创建配置文件，并将规则加入配置
 3. 在 `src/factory.ts` 中添加使用方式，暴露一些配置参数
 
-## 查看已启用的规则
+### 查看已启用的规则
 
 以下命令需要在项目根目录下执行
 ```bash
@@ -244,16 +248,15 @@ npx @eslint/config-inspector
 
 </details>
 
-# stylelint
+## Stylelint
 
-## 已启用插件
+### 已启用插件
 
 - [stylelint-config-recommended-less](https://github.com/stylelint-less/stylelint-less)
 - [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
 
-## 使用
-
 ### 使用
+
 在项目根目录创建 `.stylelintrc.mjs` 文件
 
 ```js
@@ -291,18 +294,107 @@ export default OBStylelintCfg()
 }
 ```
 
-## 规则覆盖
+### 规则覆盖
 
-stylelint 支持添加任意个自定义插件 extends 以及 rules 覆盖
+Stylelint 支持通过 `extends`、`overrides` 添加自定义插件或覆盖规则：
 
 ```js
 // .stylelintrc.mjs
-import { OBStylelintCfg } from '@oceanbase/lint-config'
+import { OBStylelintCfg } from '@oceanbase/lint-config/stylelint'
 
 export default OBStylelintCfg({
   extends: ['xxx插件'],
-  rules: {
+  overrides: {
     'selector-class-pattern': null,
-  }
+  },
 })
 ```
+
+### 设计 Token 插件
+
+内置 **设计 Token** 插件（规则名：`ob/use-design-tokens`），可在执行 lint 时检查样式文件中的硬编码颜色、尺寸等，并替换为设计 token（如 CSS 变量），保证与设计规范一致。
+
+#### 功能概览
+
+| 能力       | 说明 |
+|------------|------|
+| 检测与替换 | 识别写死的颜色（hex/rgb/rgba）、尺寸、圆角、阴影等，并替换为配置的 token |
+| 默认 Token | 内置 OceanBase UI 设计 token，可直接启用；也可关闭默认集仅用自定义 |
+| 自动修复   | 使用 `stylelint --fix` 时对可替换的值自动改写为 token |
+| 未命中提示 | 可开启「对未在 token 中的值发出警告」，便于发现遗漏 |
+
+#### 启用方式
+
+在 `OBStylelintCfg` 中开启 `designTokens.enabled` 并按需配置：
+
+```js
+// .stylelintrc.mjs
+import { OBStylelintCfg } from '@oceanbase/lint-config/stylelint'
+
+export default OBStylelintCfg({
+  designTokens: {
+    enabled: true,
+    // 是否合并内置 OceanBase UI token，默认 true
+    useDefaultOBUIToken: true,
+    // 自定义 token 映射（会与默认 token 合并，同名覆盖）
+    tokens: {
+      '--my-border': '#cdd5e4',
+      '--my-primary': '#0d6cf2',
+    },
+    // 输出为 CSS 变量格式，默认 true
+    useCSSVariable: true,
+    // CSS 变量前缀，如 'ob' 会生成 var(--ob-xxx)
+    cssVariablePrefix: 'ob',
+    // 忽略的属性
+    ignoreProperties: [],
+    // 忽略的值（正则字符串数组）
+    ignoreValues: [],
+    // 是否禁用自动修复
+    disableFix: false,
+    // 是否对未使用 token 的值发出警告
+    enableWarningForNonTokenValues: true,
+  },
+})
+```
+
+仅使用自定义 token、不启用内置 OceanBase UI token 时：
+
+```js
+export default OBStylelintCfg({
+  designTokens: {
+    enabled: true,
+    useDefaultOBUIToken: false,
+    tokens: {
+      colorBorder: '#cdd5e4',
+      colorPrimary: '#0d6cf2',
+    },
+    useCSSVariable: true,
+    cssVariablePrefix: 'my',
+  },
+})
+```
+
+#### 单独使用插件
+
+若项目只使用 Stylelint 且希望单独引用设计 Token 插件，可从 `@oceanbase/lint-config/stylelint` 引入规则与示例 token：
+
+```js
+// .stylelintrc.mjs
+import { useDesignTokens, exampleDesignTokens } from '@oceanbase/lint-config/stylelint'
+
+export default {
+  plugins: [useDesignTokens],
+  rules: {
+    'ob/use-design-tokens': [
+      true,
+      {
+        tokens: exampleDesignTokens, // 或你的 token 对象
+        useCSSVariable: true,
+        cssVariablePrefix: 'ob',
+      },
+    ],
+  },
+}
+```
+
+更多说明见 [Design Token 插件方案（Monorepo）](./docs/DESIGN_TOKEN_PLUGIN_MONOREPO.md)。

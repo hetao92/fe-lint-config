@@ -1,0 +1,9 @@
+/* RADIUS 属性 - 期望被跳过 */
+
+.border-radius-percent-skip {
+  border-radius: 50%; /* 应被跳过：百分比 */
+}
+
+.border-radius-em-skip {
+  border-radius: 2em; /* 应被跳过：em 单位 */
+}

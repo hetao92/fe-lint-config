@@ -1,0 +1,25 @@
+/* BORDER 属性 - 期望被警告 */
+
+.border-warning {
+  border: 5px solid #abcdef; /* 应被警告：颜色部分有相关令牌但未匹配 */
+}
+
+.border-color-warning {
+  border-color: #abcdef; /* 应被警告：有颜色令牌但未匹配 */
+}
+
+.border-top-color-warning {
+  border-top-color: #abcdef; /* 应被警告：有颜色令牌但未匹配 */
+}
+
+.border-right-color-warning {
+  border-right-color: #abcdef; /* 应被警告：有颜色令牌但未匹配 */
+}
+
+.border-bottom-color-warning {
+  border-bottom-color: #abcdef; /* 应被警告：有颜色令牌但未匹配 */
+}
+
+.border-left-color-warning {
+  border-left-color: #abcdef; /* 应被警告：有颜色令牌但未匹配 */
+}

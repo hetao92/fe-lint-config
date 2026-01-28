@@ -1,0 +1,21 @@
+/* COLOR 属性 - 期望被跳过 */
+
+.color-transparent-skip {
+  color: transparent; /* 应被跳过：透明色 */
+}
+
+.color-current-skip {
+  color: currentColor; /* 应被跳过：currentColor */
+}
+
+.color-inherit-skip {
+  color: inherit; /* 应被跳过：继承值 */
+}
+
+.color-initial-skip {
+  color: initial; /* 应被跳过：初始值 */
+}
+
+.outline-color-none-skip {
+  outline-color: none; /* 应被跳过：none 关键字 */
+}

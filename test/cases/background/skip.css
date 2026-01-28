@@ -1,0 +1,21 @@
+/* BACKGROUND 属性 - 期望被跳过 */
+
+.background-image-skip {
+  background-image: url('icon.png'); /* 应被跳过：图像 */
+}
+
+.background-position-skip {
+  background-position: 10px 20px; /* 应被跳过：定位 */
+}
+
+.background-size-skip {
+  background-size: cover; /* 应被跳过：尺寸 */
+}
+
+.background-repeat-skip {
+  background-repeat: no-repeat; /* 应被跳过：重复 */
+}
+
+.background-attachment-skip {
+  background-attachment: scroll; /* 应被跳过：滚动 */
+}

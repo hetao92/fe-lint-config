@@ -1,0 +1,29 @@
+/* COLOR 属性 - 期望被替换 */
+
+.color-replace {
+  color: #0d6cf2; /* 应被替换为 --ob-blue-4 */
+}
+
+.background-color-replace {
+  background-color: #f5f7fc; /* 应被替换为 --ob-color-bg-secondary */
+}
+
+.border-color-replace {
+  border-color: #eb4242; /* 应被替换为 --ob-color-border-error */
+}
+
+.outline-color-replace {
+  outline-color: #0d6cf2; /* 应被替换为 --ob-blue-4 */
+}
+
+.text-decoration-color-replace {
+  text-decoration-color: #eb4242; /* 应被替换为 --ob-color-border-error */
+}
+
+.fill-replace {
+  fill: #0d6cf2; /* 应被替换为 --ob-blue-4 */
+}
+
+.stroke-replace {
+  stroke: #eb4242; /* 应被替换为 --ob-color-border-error */
+}

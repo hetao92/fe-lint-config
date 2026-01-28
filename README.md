@@ -2,42 +2,67 @@
 
 English | [中文](./README-zh-CN.md)
 
-- [ESLint Configuration Instructions](#eslint)
-- [Stylelint Configuration Instructions](#stylelint)
+- [Quick Start](#quick-start)
+- [ESLint Configuration](#eslint)
+- [Stylelint Configuration](#stylelint)
+  - [Design Token Plugin](#design-token-plugin)
 
-# Installation
+## Quick Start
+
+### Interactive Setup (Recommended)
+
+Use the interactive command to configure ESLint or Oxlint:
 
 ```bash
-
-npm i --save-dev @oceanbase/lint-config  eslint prettier stylelint stylelint-config-recommended-less stylelint-config-standard stylelint-less
+npx @oceanbase/lint-config setup-lint
 ```
 
-# Requirements
-- Requires ESLint v9.5.0+
-- Requires Node.js (^18.18.0, ^20.9.0, or >=21.1.0)
+This will guide you to:
+1. Choose ESLint, Oxlint, or both
+2. Select project type (TypeScript, React)
+3. Select features (Prettier, Import rules, etc.)
+4. Generate config files
+5. Install dependencies
+6. Add npm scripts
 
-# ESLint
-## Enabled Plugins
-- eslint-plugin-import
-- eslint-plugin-react
-- eslint-plugin-react-hooks
-- eslint-plugin-prettier
+See [bin/README.md](./bin/README.md) for details.
 
-## Usage
-Create an eslint.config.mjs file in the root directory of your project:
+### Manual Installation
+
+#### Install
+
+```bash
+npm i --save-dev eslint prettier stylelint @oceanbase/lint-config stylelint-config-recommended-less stylelint-config-standard stylelint-less
+```
+
+#### Requirements
+
+- ESLint v9.5.0+
+- Node.js (^18.18.0, ^20.9.0, or >=21.1.0)
+
+## ESLint
+
+### Enabled Plugins
+
+- [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import)
+- [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react)
+- [eslint-plugin-react-hooks](https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks)
+- [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)
+
+### Usage
+
+Create an `eslint.config.mjs` file in your project root:
 
 ```js
-
-
 // eslint.config.mjs
 import { OBEslintCfg } from '@oceanbase/lint-config'
 
 export default OBEslintCfg()
 ```
 
-### Add Script to package.json
-```json
+### Add Scripts to `package.json`
 
+```json
 {
   "scripts": {
     "lint": "eslint .",
@@ -48,11 +73,12 @@ export default OBEslintCfg()
 
 ### Lint on Commit
 
-Add the following to package.json to run linting and auto-fix on each commit:
+Add the following to `package.json` to run lint and auto-fix on each commit:
 
 ```bash
 npm i --save-dev lint-staged husky
 ```
+
 ```json
 {
   "scripts": {
@@ -66,28 +92,28 @@ npm i --save-dev lint-staged husky
   }
 }
 ```
-## Customization
+
+### Customization
 
 ```js
 // eslint.config.js
 import OBEslintCfg from '@oceanbase/lint-config'
 
 export default OBEslintCfg({
-  // Default OBEslintCfg settings
-  // The following modules are enabled by default and can be disabled by configuring `false`
+  // Default plugins; set to false to disable
   typescript: true,
   prettier: true,
   import: true,
   react: true,
-  // `.eslintignore` does not work in flat config, you need to manually configure ignores
-  // The following are the folders ignored by default
+  // .eslintignore is not used in flat config; configure ignores here
   ignores: [
     '**/fixtures'
     // ...globs
   ]
 })
 ```
-`OBEslintCfg` can also accept any number of custom configuration overrides:
+
+`OBEslintCfg` also accepts any number of custom config overrides:
 
 ```js
 // eslint.config.js
@@ -95,10 +121,10 @@ import OBEslintCfg from '@oceanbase/lint-config'
 
 export default OBEslintCfg(
   {
-    // Default OBEslintCfg settings
+    // OBEslintCfg options
   },
+  // From the second argument onward, use ESLint Flat Configs
   {
-    // Starting from the second parameter, use ESLint's Flat Configs to provide any custom configuration
     ignores: ['**/test'],
     files: ['**/*.ts'],
     rules: {
@@ -111,8 +137,9 @@ export default OBEslintCfg(
 )
 ```
 
-## Rule Overrides
-Rules can be configured per module and can also be overridden with custom settings:
+### Rule Overrides
+
+Rules are scoped per module and can be overridden in the first argument or in later config objects:
 
 ```js
 // eslint.config.js
@@ -120,7 +147,6 @@ import OBEslintCfg from '@oceanbase/lint-config'
 
 export default OBEslintCfg(
   {
-    // Typescript, react, prettier, import and other default modules all support overriding rules in this way
     typescript: {
       overrides: {
         '@typescript-eslint/no-unused-vars': 'off'
@@ -128,7 +154,6 @@ export default OBEslintCfg(
     }
   },
   {
-    // You can also overwrite in subsequent configuration objects
     files: ['**/*.vue'],
     rules: {
       'vue/operator-linebreak': ['error', 'before']
@@ -137,11 +162,12 @@ export default OBEslintCfg(
 )
 ```
 
-## TypeScript Type Information Rules
-You can enable TypeScript [type information rules]((https://typescript-eslint.io/linting/typed-linting/)) by setting the tsconfigPath parameter:
+### TypeScript Type Information Rules
+
+You can enable [type-aware rules](https://typescript-eslint.io/linting/typed-linting/) by setting `tsconfigPath`:
+
 > [!NOTE]
-> Type information rule checking is relatively strict, and you can decide whether to enable it based on your project situation
-> In addition, enabling type information rules will have an impact on verification performance, depending on the size of the project repository
+> Type-aware rules are stricter; enable based on your project needs. They may also affect performance depending on repository size.
 
 ```js
 import OBEslintCfg from '@oceanbase/lint-config'
@@ -153,40 +179,39 @@ export default OBEslintCfg({
 })
 ```
 
-## Adding New Rules
+### Adding New Rules
 
-1. Add rules in src/rules.
-2. Create a configuration file in src/configs and add the rule.
-3. In src/factory.ts, define usage methods and expose configuration options.
+1. Add rules under `src/rules`
+2. Add them to a config under `src/configs`
+3. Expose options in `src/factory.ts` if needed
 
-## View Enabled Rules
-Run the following command in the root directory:
+### View Enabled Rules
+
+From the project root:
 
 ```bash
 npx @eslint/config-inspector
 ```
 
-## IDE Support (Auto-Fix on Save)
+### IDE Support (Auto-Fix on Save)
+
 <details>
-<summary>🟦 VS Code Support</summary>
+<summary>🟦 VS Code</summary>
 
 <br>
 
-Install the VS Code ESLint [extension]((https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint))
+Install the [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 
-Add the following to `.vscode/settings.json`:
+Add to `.vscode/settings.json`:
 
 ```jsonc
 {
-  // Disable the default formatter, use eslint instead
   "prettier.enable": false,
   "editor.formatOnSave": false,
-  // Auto fix
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
   },
-  // Enable eslint for all supported languages
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -212,17 +237,19 @@ Add the following to `.vscode/settings.json`:
   ]
 }
 ```
+
 </details>
 
+## Stylelint
 
-# Stylelint
-## Enabled Plugins
+### Enabled Plugins
+
 - [stylelint-config-recommended-less](https://github.com/stylelint-less/stylelint-less)
 - [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
 
 ### Usage
 
-Create a `.stylelintrc.mjs` file in your project root directory:
+Create a `.stylelintrc.mjs` file in your project root:
 
 ```js
 // .stylelintrc.mjs
@@ -231,7 +258,8 @@ import { OBStylelintCfg } from '@oceanbase/lint-config'
 export default OBStylelintCfg()
 ```
 
-### Add Script to `package.json`
+### Add Scripts to `package.json`
+
 ```json
 {
   "scripts": {
@@ -242,7 +270,8 @@ export default OBStylelintCfg()
 ```
 
 ### Lint on Commit
-Add the following to `package.json` to run stylelinting and auto-fix on each commit:
+
+Add to `package.json` to run stylelint on commit:
 
 ```json
 {
@@ -257,17 +286,103 @@ Add the following to `package.json` to run stylelinting and auto-fix on each com
 }
 ```
 
-## Rule Overrides
-Stylelint allows adding custom plugins and rule overrides:
+### Rule Overrides
+
+You can add custom plugins via `extends` and override rules via `overrides`:
 
 ```js
 // .stylelintrc.mjs
 import { OBStylelintCfg } from '@oceanbase/lint-config'
 
 export default OBStylelintCfg({
-  extends: ['additional-plugin'],
-  rules: {
+  extends: ['some-plugin'],
+  overrides: {
     'selector-class-pattern': null
   }
 })
 ```
+
+### Design Token Plugin
+
+The built-in **Design Token** plugin (rule: `ob/use-design-tokens`) checks style files for hardcoded colors, dimensions, etc., and can replace them with design tokens (e.g. CSS variables) so styles stay aligned with your design system.
+
+#### Overview
+
+| Feature | Description |
+|--------|-------------|
+| Detect & replace | Finds hardcoded colors (hex/rgb/rgba), dimensions, radius, shadow, etc., and replaces with configured tokens |
+| Default tokens | OceanBase UI design tokens are included; you can enable them or use only your own |
+| Auto-fix | `stylelint --fix` rewrites replaceable values to tokens |
+| Warnings | Optional warnings for values that don’t match any token |
+
+#### Enabling
+
+Turn on `designTokens.enabled` in `OBStylelintCfg` and configure as needed:
+
+```js
+// .stylelintrc.mjs
+import { OBStylelintCfg } from '@oceanbase/lint-config/stylelint'
+
+export default OBStylelintCfg({
+  designTokens: {
+    enabled: true,
+    // Merge built-in OceanBase UI tokens, default true
+    useDefaultOBUIToken: true,
+    // Custom token map (merged with defaults, same key overrides)
+    tokens: {
+      '--my-border': '#cdd5e4',
+      '--my-primary': '#0d6cf2'
+    },
+    // Output as CSS variables, default true
+    useCSSVariable: true,
+    // CSS variable prefix, e.g. 'ob' → var(--ob-xxx)
+    cssVariablePrefix: 'ob',
+    ignoreProperties: [],
+    ignoreValues: [],
+    disableFix: false,
+    enableWarningForNonTokenValues: true
+  }
+})
+```
+
+To use only your own tokens (no built-in OceanBase UI set):
+
+```js
+export default OBStylelintCfg({
+  designTokens: {
+    enabled: true,
+    useDefaultOBUIToken: false,
+    tokens: {
+      colorBorder: '#cdd5e4',
+      colorPrimary: '#0d6cf2'
+    },
+    useCSSVariable: true,
+    cssVariablePrefix: 'my'
+  }
+})
+```
+
+#### Using the Plugin Standalone
+
+If you only use Stylelint and want to use the Design Token plugin on its own, import the rule and example tokens from `@oceanbase/lint-config/stylelint`:
+
+```js
+// .stylelintrc.mjs
+import { useDesignTokens, exampleDesignTokens } from '@oceanbase/lint-config/stylelint'
+
+export default {
+  plugins: [useDesignTokens],
+  rules: {
+    'ob/use-design-tokens': [
+      true,
+      {
+        tokens: exampleDesignTokens, // or your own token object
+        useCSSVariable: true,
+        cssVariablePrefix: 'ob'
+      }
+    ]
+  }
+}
+```
+
+For more details, see [Design Token Plugin (Monorepo)](./docs/DESIGN_TOKEN_PLUGIN_MONOREPO.md).

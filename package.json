@@ -1,6 +1,6 @@
 {
   "name": "@oceanbase/lint-config",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "type": "module",
@@ -19,6 +19,11 @@
       "types": "./dist/stylelint.d.ts",
       "require": "./dist/stylelint.cjs",
       "import": "./dist/stylelint.js"
+    },
+    "./design-tokens": {
+      "types": "./dist/design-tokens/index.d.ts",
+      "require": "./dist/design-tokens/index.cjs",
+      "import": "./dist/design-tokens/index.js"
     }
   },
   "typesVersions": {
@@ -28,6 +33,9 @@
       ],
       "stylelint": [
         "./dist/stylelint.d.ts"
+      ],
+      "design-tokens": [
+        "./dist/design-tokens/index.d.ts"
       ],
       "*": [
         "./dist/*"
@@ -113,7 +121,9 @@
     "lint:fix": "npm run lint -- --fix",
     "preview": "npx @eslint/config-inspector --config eslint.config.mjs",
     "build:inspector": "pnpm build && npx @eslint/config-inspector build",
-    "setup": "node bin/setup-lint.js"
+    "setup": "node bin/setup-lint.js",
+    "test": "node test/run-test.js",
+    "test:all": "node test/run-all-tests.js"
   },
   "engines": {
     "install-node": "v21"

@@ -1,0 +1,5 @@
+/* COLOR 属性 - 期望被警告 */
+
+.color-warning {
+  color: #abcdef; /* 应被警告：有颜色令牌但未匹配 */
+}

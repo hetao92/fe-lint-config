@@ -1,0 +1,53 @@
+/* SPACING 属性 - 期望被替换 */
+
+.margin-replace {
+  margin: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.margin-top-replace {
+  margin-top: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.margin-right-replace {
+  margin-right: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.margin-bottom-replace {
+  margin-bottom: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.margin-left-replace {
+  margin-left: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.padding-replace {
+  padding: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.padding-top-replace {
+  padding-top: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.padding-right-replace {
+  padding-right: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.padding-bottom-replace {
+  padding-bottom: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.padding-left-replace {
+  padding-left: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.gap-replace {
+  gap: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.row-gap-replace {
+  row-gap: 24px; /* 应被替换为 --ob-space-600 */
+}
+
+.column-gap-replace {
+  column-gap: 24px; /* 应被替换为 --ob-space-600 */
+}

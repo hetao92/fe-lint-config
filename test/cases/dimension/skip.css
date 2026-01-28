@@ -1,0 +1,62 @@
+/* DIMENSION 属性 - 期望被跳过 */
+
+/* 注意：当前设计令牌中没有 dimension 类别的 token（width/height 相关），
+   所以所有 dimension 属性都应该被跳过，不会替换也不会警告 */
+
+/* 没有 token 的情况 - 应被跳过 */
+.width-skip {
+  width: 200px; /* 应被跳过：当前没有 width 相关的设计令牌 */
+}
+
+.min-width-skip {
+  min-width: 150px; /* 应被跳过：当前没有 width 相关的设计令牌 */
+}
+
+.max-width-skip {
+  max-width: 500px; /* 应被跳过：当前没有 width 相关的设计令牌 */
+}
+
+.height-skip {
+  height: 100px; /* 应被跳过：当前没有 height 相关的设计令牌 */
+}
+
+.min-height-skip {
+  min-height: 80px; /* 应被跳过：当前没有 height 相关的设计令牌 */
+}
+
+.max-height-skip {
+  max-height: 400px; /* 应被跳过：当前没有 height 相关的设计令牌 */
+}
+
+.border-width-skip {
+  border-width: 2px; /* 应被跳过：当前没有 width 相关的设计令牌 */
+}
+
+.border-top-width-skip {
+  border-top-width: 1px; /* 应被跳过：当前没有 width 相关的设计令牌 */
+}
+
+.border-bottom-width-skip {
+  border-bottom-width: 3px; /* 应被跳过：当前没有 width 相关的设计令牌 */
+}
+
+.border-left-width-skip {
+  border-left-width: 4px; /* 应被跳过：当前没有 width 相关的设计令牌 */
+}
+
+.border-right-width-skip {
+  border-right-width: 5px; /* 应被跳过：当前没有 width 相关的设计令牌 */
+}
+
+/* 其他单位的情况 - 应被跳过 */
+.dimension-percent-skip {
+  width: 50%; /* 应被跳过：百分比 */
+}
+
+.dimension-em-skip {
+  height: 2em; /* 应被跳过：em 单位 */
+}
+
+.dimension-rem-skip {
+  width: 3rem; /* 应被跳过：rem 单位 */
+}

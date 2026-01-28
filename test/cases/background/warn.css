@@ -1,0 +1,9 @@
+/* BACKGROUND 属性 - 期望被警告 */
+
+.background-warning {
+  background-color: #abcdef; /* 应被警告：有颜色令牌但未匹配 */
+}
+
+.complex-background-warning {
+  background: #abcdef 15px 25px; /* 包含颜色和间距 */
+}

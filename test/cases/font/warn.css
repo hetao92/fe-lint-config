@@ -1,0 +1,13 @@
+/* FONT 属性 - 期望被警告 */
+
+.font-weight-warning {
+  font-weight: 700; /* 应被警告：如果有字体权重令牌但未匹配（600 有 token，700 没有） */
+}
+
+.font-family-warning {
+  font-family: sans-serif; /* 应被警告：有字体类别但 font-family 值没有匹配的 token */
+}
+
+.letter-spacing-warning {
+  letter-spacing: 2px; /* 应被警告：有字体类别但 letter-spacing 值没有匹配的 token */
+}

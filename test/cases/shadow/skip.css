@@ -1,0 +1,13 @@
+/* SHADOW 属性 - 期望被跳过 */
+
+.shadow-filter-skip {
+  filter: drop-shadow(2px 2px 4px #000); /* 应被跳过：filter 属性 */
+}
+
+.shadow-blur-skip {
+  filter: blur(5px); /* 应被跳过：blur 效果 */
+}
+
+.shadow-drop-skip {
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)); /* 应被跳过：drop-shadow 在 filter 中 */
+}

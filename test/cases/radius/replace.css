@@ -1,0 +1,13 @@
+/* RADIUS 属性 - 期望被替换 */
+
+.border-radius-replace {
+  border-radius: 4px; /* 应被替换为 --ob-radius-sm */
+}
+
+.border-top-left-radius-replace {
+  border-top-left-radius: 6px; /* 应被替换为 --ob-radius-md */
+}
+
+.border-bottom-right-radius-replace {
+  border-bottom-right-radius: 8px; /* 应被替换为 --ob-radius-lg */
+}

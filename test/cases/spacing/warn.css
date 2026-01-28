@@ -1,0 +1,5 @@
+/* SPACING 属性 - 期望被警告 */
+
+.spacing-warning {
+  margin: 25px; /* 应被警告：如果有间距令牌但未匹配 */
+}

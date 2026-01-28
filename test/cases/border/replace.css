@@ -1,0 +1,49 @@
+/* BORDER 属性 - 期望被替换 */
+
+.border-color-replace {
+  border-color: #8592ad; /* 应被替换为 --ob-color-border-hover */
+}
+
+.border-top-color-replace {
+  border-top-color: #0d6cf2; /* 应被替换为 --ob-blue-4 */
+}
+
+.border-right-color-replace {
+  border-right-color: #0d6cf2; /* 应被替换为 --ob-blue-4 */
+}
+
+.border-bottom-color-replace {
+  border-bottom-color: #0d6cf2; /* 应被替换为 --ob-blue-4 */
+}
+
+.border-left-color-replace {
+  border-left-color: #0d6cf2; /* 应被替换为 --ob-blue-4 */
+}
+
+.border-inline-color-replace {
+  border-inline-color: #0d6cf2; /* 应被替换为 --ob-blue-4 */
+}
+
+.border-block-color-replace {
+  border-block-color: #0d6cf2; /* 应被替换为 --ob-blue-4 */
+}
+
+.border-full-replace {
+  border: 2px solid #0d6cf2; /* 应被替换颜色部分为 --ob-blue-4 */
+}
+
+.border-top-replace {
+  border-top: 1px solid #0d6cf2; /* 应被替换颜色部分为 --ob-blue-4 */
+}
+
+.border-right-replace {
+  border-right: 1px solid #0d6cf2; /* 应被替换颜色部分为 --ob-blue-4 */
+}
+
+.border-bottom-replace {
+  border-bottom: 1px solid #0d6cf2; /* 应被替换颜色部分为 --ob-blue-4 */
+}
+
+.border-left-replace {
+  border-left: 1px solid #0d6cf2; /* 应被替换颜色部分为 --ob-blue-4 */
+}

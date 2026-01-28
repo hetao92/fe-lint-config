@@ -1,0 +1,5 @@
+/* RADIUS 属性 - 期望被警告 */
+
+.border-radius-warning {
+  border-radius: 15px; /* 应被警告：如果有圆角令牌但未匹配 */
+}

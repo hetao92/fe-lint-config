@@ -1,0 +1,57 @@
+/* BORDER 属性 - 期望被跳过 */
+
+.border-width-skip {
+  border-width: 2px; /* 应被跳过：宽度属于 dimension 类别 */
+}
+
+.border-top-width-skip {
+  border-top-width: 2px; /* 应被跳过：宽度属于 dimension 类别 */
+}
+
+.border-right-width-skip {
+  border-right-width: 2px; /* 应被跳过：宽度属于 dimension 类别 */
+}
+
+.border-bottom-width-skip {
+  border-bottom-width: 2px; /* 应被跳过：宽度属于 dimension 类别 */
+}
+
+.border-left-width-skip {
+  border-left-width: 2px; /* 应被跳过：宽度属于 dimension 类别 */
+}
+
+.border-inline-width-skip {
+  border-inline-width: 2px; /* 应被跳过：宽度属于 dimension 类别 */
+}
+
+.border-block-width-skip {
+  border-block-width: 2px; /* 应被跳过：宽度属于 dimension 类别 */
+}
+
+.border-style-skip {
+  border-style: dotted; /* 应被跳过：样式不在设计令牌范围内 */
+}
+
+.border-top-style-skip {
+  border-top-style: dotted; /* 应被跳过：样式不在设计令牌范围内 */
+}
+
+.border-right-style-skip {
+  border-right-style: dotted; /* 应被跳过：样式不在设计令牌范围内 */
+}
+
+.border-bottom-style-skip {
+  border-bottom-style: dotted; /* 应被跳过：样式不在设计令牌范围内 */
+}
+
+.border-left-style-skip {
+  border-left-style: dotted; /* 应被跳过：样式不在设计令牌范围内 */
+}
+
+.border-inline-style-skip {
+  border-inline-style: dotted; /* 应被跳过：样式不在设计令牌范围内 */
+}
+
+.border-block-style-skip {
+  border-block-style: dotted; /* 应被跳过：样式不在设计令牌范围内 */
+}

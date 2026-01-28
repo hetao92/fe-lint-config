@@ -1,0 +1,17 @@
+/* SPACING 属性 - 期望被跳过 */
+
+.spacing-percent-skip {
+  margin: 10%; /* 应被跳过：百分比 */
+}
+
+.spacing-em-skip {
+  padding: 1em; /* 应被跳过：em 单位 */
+}
+
+.spacing-rem-skip {
+  gap: 1rem; /* 应被跳过：rem 单位 */
+}
+
+.spacing-calc-skip {
+  margin: calc(100% - 20px); /* 应被跳过：calc 函数 */
+}

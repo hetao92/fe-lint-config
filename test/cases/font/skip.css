@@ -1,0 +1,21 @@
+/* FONT 属性 - 期望被跳过 */
+
+.font-weight-normal-skip {
+  font-weight: normal; /* 应被跳过：normal 关键字 */
+}
+
+.font-weight-bold-skip {
+  font-weight: bold; /* 应被跳过：bold 关键字 */
+}
+
+.font-style-italic-skip {
+  font-style: italic; /* 应被跳过：italic 关键字 */
+}
+
+.font-style-normal-skip {
+  font-style: normal; /* 应被跳过：normal 关键字 */
+}
+
+.font-style-oblique-skip {
+  font-style: oblique; /* 应被跳过：oblique 关键字 */
+}

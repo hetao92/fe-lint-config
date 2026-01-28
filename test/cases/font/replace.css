@@ -1,0 +1,15 @@
+/* FONT 属性 - 期望被替换 */
+
+.font-weight-replace {
+  font-weight: 500; /* 应被替换为 --ob-font-weight-md */
+}
+
+.font-size-replace {
+  font-size: 18px; /* 应被替换为 --ob-font-size-450 */
+}
+
+.line-height-replace {
+  line-height: 24px; /* 应被替换为 --ob-font-line-height-600 */
+}
+
+/* font-family 和 letter-spacing 没有对应的 token，所以会被警告而不是替换 */

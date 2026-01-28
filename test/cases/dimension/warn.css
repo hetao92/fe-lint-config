@@ -1,0 +1,4 @@
+/* DIMENSION 属性 - 期望被警告 */
+
+/* 注意：当前设计令牌中没有 dimension 类别的 token（width/height 相关），
+   所以此文件暂时为空。如果将来添加了 dimension 相关的设计令牌，可以在此添加测试用例 */

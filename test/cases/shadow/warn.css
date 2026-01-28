@@ -1,0 +1,21 @@
+/* SHADOW 属性 - 期望被警告 */
+
+.shadow-warning {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* 应被警告：有阴影令牌但值不匹配 */
+}
+
+.box-shadow-simple-warning {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 应被警告：有阴影令牌但值不匹配 */
+}
+
+.box-shadow-complex-warning {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1); /* 应被警告：有阴影令牌但值不匹配 */
+}
+
+.box-shadow-inset-warning {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* 应被警告：有阴影令牌但值不匹配 */
+}
+
+.text-shadow-warning {
+  text-shadow: 2px 2px 4px #000; /* 应被警告：有阴影令牌但值不匹配 */
+}

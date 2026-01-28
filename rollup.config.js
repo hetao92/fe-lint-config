@@ -1,43 +1,43 @@
-import commonjs from "@rollup/plugin-commonjs";
-import { defineConfig } from "rollup";
-import dts from "rollup-plugin-dts";
-import ts from "rollup-plugin-typescript2";
+import commonjs from '@rollup/plugin-commonjs';
+import { defineConfig } from 'rollup';
+import dts from 'rollup-plugin-dts';
+import ts from 'rollup-plugin-typescript2';
 
 // 所有外部依赖
 const externalDeps = [
   // ESLint 相关
-  "eslint",
-  "eslint-flat-config-utils",
-  "@eslint/js",
-  "@typescript-eslint/parser",
-  "typescript-eslint",
-  "eslint-plugin-import",
-  "eslint-plugin-react",
-  "eslint-plugin-react-hooks",
-  "eslint-plugin-prettier",
-  "eslint-plugin-prettier/recommended",
-  "eslint-config-prettier",
-  "prettier",
+  'eslint',
+  'eslint-flat-config-utils',
+  '@eslint/js',
+  '@typescript-eslint/parser',
+  'typescript-eslint',
+  'eslint-plugin-import',
+  'eslint-plugin-react',
+  'eslint-plugin-react-hooks',
+  'eslint-plugin-prettier',
+  'eslint-plugin-prettier/recommended',
+  'eslint-config-prettier',
+  'prettier',
   // Stylelint 相关
-  "stylelint",
-  "stylelint-config-standard",
-  "stylelint-config-recommended-less",
-  "stylelint-less",
-  "postcss-less",
+  'stylelint',
+  'stylelint-config-standard',
+  'stylelint-config-recommended-less',
+  'stylelint-less',
+  'postcss-less',
 ];
 
 const config = defineConfig([
   // ESLint 独立入口
   {
-    input: "src/eslint.ts",
+    input: 'src/eslint.ts',
     output: [
       {
-        file: "dist/eslint.js",
-        format: "esm",
+        file: 'dist/eslint.js',
+        format: 'esm',
       },
       {
-        file: "dist/eslint.cjs",
-        format: "cjs",
+        file: 'dist/eslint.cjs',
+        format: 'cjs',
       },
     ],
     plugins: [ts(), commonjs()],
@@ -46,15 +46,15 @@ const config = defineConfig([
 
   // Stylelint 独立入口
   {
-    input: "src/stylelint.ts",
+    input: 'src/stylelint.ts',
     output: [
       {
-        file: "dist/stylelint.js",
-        format: "esm",
+        file: 'dist/stylelint.js',
+        format: 'esm',
       },
       {
-        file: "dist/stylelint.cjs",
-        format: "cjs",
+        file: 'dist/stylelint.cjs',
+        format: 'cjs',
       },
     ],
     plugins: [ts(), commonjs()],
@@ -63,11 +63,11 @@ const config = defineConfig([
 
   // ESLint Factory 模块（供主入口延迟加载）
   {
-    input: "src/eslintFactory.ts",
+    input: 'src/eslintFactory.ts',
     output: [
       {
-        file: "dist/eslintFactory.cjs",
-        format: "cjs",
+        file: 'dist/eslintFactory.cjs',
+        format: 'cjs',
       },
     ],
     plugins: [ts(), commonjs()],
@@ -76,11 +76,28 @@ const config = defineConfig([
 
   // Configs 模块（供主入口延迟加载）
   {
-    input: "src/configs/index.ts",
+    input: 'src/configs/index.ts',
     output: [
       {
-        file: "dist/configs.cjs",
-        format: "cjs",
+        file: 'dist/configs.cjs',
+        format: 'cjs',
+      },
+    ],
+    plugins: [ts(), commonjs()],
+    external: externalDeps,
+  },
+
+  // Design Tokens 独立入口
+  {
+    input: 'src/design-tokens/index.ts',
+    output: [
+      {
+        file: 'dist/design-tokens/index.js',
+        format: 'esm',
+      },
+      {
+        file: 'dist/design-tokens/index.cjs',
+        format: 'cjs',
       },
     ],
     plugins: [ts(), commonjs()],
@@ -89,63 +106,67 @@ const config = defineConfig([
 
   // 主入口 - CJS 格式
   {
-    input: "src/index.ts",
+    input: 'src/index.ts',
     output: [
       {
-        file: "dist/index.cjs",
-        format: "cjs",
-        exports: "named",
+        file: 'dist/index.cjs',
+        format: 'cjs',
+        exports: 'named',
       },
     ],
     plugins: [ts(), commonjs()],
     external: [
       ...externalDeps,
       // 把这些模块也标记为外部，让 require 在运行时加载
-      "./eslintFactory.cjs",
-      "./configs.cjs",
+      './eslintFactory.cjs',
+      './configs.cjs',
     ],
   },
 
   // 主入口 - ESM 格式
   {
-    input: "src/index.ts",
+    input: 'src/index.ts',
     output: [
       {
-        file: "dist/index.js",
-        format: "esm",
+        file: 'dist/index.js',
+        format: 'esm',
         banner: `import { createRequire } from 'module';\nconst require = createRequire(import.meta.url);`,
       },
     ],
     plugins: [ts(), commonjs()],
-    external: [
-      ...externalDeps,
-      "./eslintFactory.cjs",
-      "./configs.cjs",
-    ],
+    external: [...externalDeps, './eslintFactory.cjs', './configs.cjs'],
   },
 
   // 生成 .d.ts 文件
   {
-    input: "src/eslint.ts",
+    input: 'src/eslint.ts',
     output: {
-      file: "dist/eslint.d.ts",
-      format: "esm",
+      file: 'dist/eslint.d.ts',
+      format: 'esm',
     },
     plugins: [dts()],
   },
   {
-    input: "src/stylelint.ts",
+    input: 'src/stylelint.ts',
     output: {
-      file: "dist/stylelint.d.ts",
-      format: "esm",
+      file: 'dist/stylelint.d.ts',
+      format: 'esm',
     },
     plugins: [dts()],
   },
   {
-    input: "src/index.ts",
+    input: 'src/index.ts',
     output: {
-      file: "dist/index.d.ts",
-      format: "esm",
+      file: 'dist/index.d.ts',
+      format: 'esm',
+    },
+    plugins: [dts()],
+  },
+  {
+    input: 'src/design-tokens/index.ts',
+    output: {
+      file: 'dist/design-tokens/index.d.ts',
+      format: 'esm',
     },
     plugins: [dts()],
   },

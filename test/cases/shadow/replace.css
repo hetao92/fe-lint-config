@@ -1,0 +1,21 @@
+/* SHADOW 属性 - 期望被替换 */
+
+.box-shadow-1-top-replace {
+  box-shadow: 0px -1px 2px 0px hsla(219, 50%, 15%, 0.1); /* 应被替换为 --ob-shadow-1-top */
+}
+
+.box-shadow-1-bottom-replace {
+  box-shadow: 0px 1px 2px 0px hsla(219, 50%, 15%, 0.1); /* 应被替换为 --ob-shadow-1-bottom */
+}
+
+.box-shadow-1-left-replace {
+  box-shadow: -1px 0px 2px 0px hsla(219, 50%, 15%, 0.1); /* 应被替换为 --ob-shadow-1-left */
+}
+
+.box-shadow-1-right-replace {
+  box-shadow: 1px 0px 2px 0px hsla(219, 50%, 15%, 0.1); /* 应被替换为 --ob-shadow-1-right */
+}
+
+.box-shadow-2-replace {
+  box-shadow: 0 6px 16px 0 rgba(54, 69, 99, 0.08), 0 3px 6px -4px rgba(54, 69, 99, 0.12), 0 9px 28px 8px rgba(54, 69, 99, 0.05); /* 应被替换为 --ob-shadow-2 */
+}

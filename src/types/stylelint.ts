@@ -23,7 +23,11 @@ export interface DesignTokensOptions {
   ignoreValues?: string[];
   /** 是否禁用自动修复，默认 false */
   disableFix?: boolean;
-  /** 是否对未使用设计 token 的值发出警告，默认 false */
+  /**
+   * 是否对未使用设计 token 的值发出警告。
+   * `config.js` 中插件单独使用时的默认值为 false；
+   * 通过 `OBStylelintCfg` 且 `designTokens.enabled` 为 true 时，预设会传入 true。
+   */
   enableWarningForNonTokenValues?: boolean;
 }
 
